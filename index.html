@@ -7,7 +7,45 @@
 	<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-	<!-- Put code here -->
+	<section class="container-fluid col-md-6 col-md-offset-3">
+		<div class="video-player">
+			<video class="player" autoplay>
+				<source src="./videos/ex_01.mp4"/>
+				<source src="./videos/ex_01.webm"/>
+			</video>
+			<section class="controls">		
+				<div class="play-slider">
+					<div class="play-slider-all"></div>
+					<div class="play-slider-progress"></div>	
+				</div>
+				
+				<div class="row">
+					<button class="btn btn-prev" name="prev">
+						<svg class="prev-icon"></svg>
+					</button>
+				
+					<section class="description">
+						<span class="title">Get Lucky</span>
+						<span class="band">Daft Punk feat. Pharell Williams</span>
+					</section>
+
+					<button class="btn btn-next" name="next">
+						<svg class="next-icon"></svg>
+					</button>
+				</div>
+
+				<button class="btn btn-play-pause" name="play-pause">
+					<svg class="play-pause-icon"></svg>
+				</button>
+
+				<div class="control-volume">
+					<svg class="volume-icon"></svg>
+					<input type="range" class="volume-slider" min="0" max="100" name="volume">
+				</div>
+			</section>
+		</div>
+	</section>
+	
 	<script src="vendor/jquery/dist/jquery.min.js"></script>
 	<script src="js/main.js"></script>
 </body>

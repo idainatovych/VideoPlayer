@@ -1,0 +1,130 @@
+/* Mixins start */
+/* Mixins end */
+.video-player {
+  width: 640px;
+  overflow: hidden; }
+  .video-player video.player {
+    width: 640px;
+    cursor: pointer;
+    -webkit-filter: grayscale(0.4) brightness(0.9) sepia(0.1);
+    filter: grayscale(0.4) brightness(0.9) sepia(0.1); }
+  .video-player .controls .play-slider {
+    width: 640px;
+    cursor: pointer;
+    position: relative;
+    bottom: 5px;
+    z-index: 100; }
+    .video-player .controls .play-slider .play-slider-all {
+      width: 100%;
+      height: 10px;
+      background-color: #111; }
+    .video-player .controls .play-slider .play-slider-progress {
+      width: 45%;
+      height: 10px;
+      background: #e73e4a;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #e73e4a 0%, #c63a44 100%);
+      /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e73e4a), color-stop(100%, #c63a44));
+      /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, #e73e4a 0%, #c63a44 100%);
+      /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, #e73e4a 0%, #c63a44 100%);
+      /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, #e73e4a 0%, #c63a44 100%);
+      /* IE10+ */
+      background: linear-gradient(to bottom, #e73e4a 0%, #c63a44 100%);
+      /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColor', endColorstr='$endColor',GradientType=0 );
+      /* IE6-9 */
+      position: relative;
+      bottom: 10px; }
+  .video-player .controls .row {
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    bottom: 15px;
+    left: 15px; }
+    .video-player .controls .row .btn-prev, .video-player .controls .row .btn-next {
+      width: 100px;
+      height: 100px;
+      margin: 0;
+      display: inline-block;
+      position: relative;
+      bottom: 19px;
+      border: 1px solid #393a3c;
+      border-top: 2px solid #393a3c;
+      outline: none;
+      border-radius: 0;
+      background: #2e2f30;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #2e2f30 0%, #1f2022 100%);
+      /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e2f30), color-stop(100%, #1f2022));
+      /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, #2e2f30 0%, #1f2022 100%);
+      /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, #2e2f30 0%, #1f2022 100%);
+      /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, #2e2f30 0%, #1f2022 100%);
+      /* IE10+ */
+      background: linear-gradient(to bottom, #2e2f30 0%, #1f2022 100%);
+      /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColor', endColorstr='$endColor',GradientType=0 );
+      /* IE6-9 */ }
+      .video-player .controls .row .btn-prev svg, .video-player .controls .row .btn-next svg {
+        width: 100%;
+        height: 100%; }
+    .video-player .controls .row .btn-next {
+      right: 8px; }
+    .video-player .controls .row .description {
+      width: 440px;
+      height: 100px;
+      margin: 0;
+      padding-top: 20px;
+      position: relative;
+      right: 4px;
+      display: inline-block;
+      border: 1px solid #393a3c;
+      border-top: 2px solid #393a3c;
+      background: #2e2f30;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #2e2f30 0%, #1f2022 100%);
+      /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2e2f30), color-stop(100%, #1f2022));
+      /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, #2e2f30 0%, #1f2022 100%);
+      /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, #2e2f30 0%, #1f2022 100%);
+      /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, #2e2f30 0%, #1f2022 100%);
+      /* IE10+ */
+      background: linear-gradient(to bottom, #2e2f30 0%, #1f2022 100%);
+      /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColor', endColorstr='$endColor',GradientType=0 );
+      /* IE6-9 */ }
+      .video-player .controls .row .description span.title, .video-player .controls .row .description span.band {
+        display: block;
+        text-align: center;
+        text-shadow: 1px 1px 2px #1e1e20; }
+      .video-player .controls .row .description span.title {
+        color: #fff;
+        font-size: 20px; }
+      .video-player .controls .row .description span.band {
+        margin-top: 5px;
+        color: #474848;
+        font-size: 18px; }
+  .video-player .controls .btn-play-pause {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    bottom: 224px;
+    left: 1px;
+    margin: 0;
+    background: none;
+    outline: none;
+    border-radius: 0;
+    border-right: 2px solid #393a3c; }
+    .video-player .controls .btn-play-pause svg {
+      width: 100%;
+      height: 100%; }
