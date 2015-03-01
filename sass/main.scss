@@ -11,8 +11,33 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$startColor', endColorstr='$endColor',GradientType=0 ); /* IE6-9 */
 }
 
-@mixin shadow() {
+@mixin borderGradient($start, $end) {
+	border-style: solid;
+	//border-color: rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4)); /* Old browsers */
+	-moz-border-image: -moz-linear-gradient(top, rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4)) 0%, rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)) 100%); /* FF3.6+ */
+	-webkit-border-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4))), color-stop(100%,rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)))); /* Chrome,Safari4+ */
+	-webkit-border-image: -webkit-linear-gradient(top, rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4)) 0%, rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)) 100%); /* Chrome10+,Safari5.1+ */
+	-o-border-image: -o-linear-gradient(top, rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4)) 0%,rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)) 100%); /* Opera 11.10+ */
+	-ms-border-image: -ms-linear-gradient(top, rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4)) 0%,rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)) 100%); /* IE10+ */
+	border-image: linear-gradient(to bottom, rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4)) 0%,rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)) 100%); /* W3C */
 
+	border-style: solid;
+	-webkit-border-image: 
+		-webkit-gradient(linear, 0 100%, 0 0, from(rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4))), to(rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4)))) 1 100%;
+	-webkit-border-image: 
+		-webkit-linear-gradient(bottom, rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)), rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4))) 1 100%;
+	-moz-border-image:
+		-moz-linear-gradient(bottom, rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)), rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4))) 1 100%;  
+	-o-border-image:
+		-o-linear-gradient(bottom, rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)), rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4))) 1 100%;
+	border-image:
+		linear-gradient(to top, rgba(nth($end, 1), nth($end, 2), nth($end, 3), nth($end, 4)), rgba(nth($start, 1), nth($start, 2), nth($start, 3), nth($start, 4))) 1 100%;
+}
+
+@mixin shadow($x, $y, $blur, $color) {
+	-webkit-box-shadow: $x $y $blur 0px $color;
+	-moz-box-shadow: $x $y $blur 0px $color;
+	box-shadow: $x $y $blur 0px $color;
 }
 
 @mixin text-shadow($x, $y, $blur, $color) {
@@ -21,119 +46,167 @@
 
 /* Mixins end */
 
-.video-player {
-	width: 640px;
-	overflow: hidden;
+.wrapper {
+	background: url(../img/bg.jpg);
+	background-size: cover;
 
-	video.player {
+	.video-player {
 		width: 640px;
-		cursor: pointer;
-		-webkit-filter: grayscale(0.4) brightness(0.9) sepia(0.1);
-		filter: grayscale(0.4) brightness(0.9) sepia(0.1);
-	}
-
-	.controls {
-		.play-slider {
+		overflow: hidden;
+		@include shadow(-2px, 2px, 15px, #1e1e20);
+		
+		video.player {
 			width: 640px;
 			cursor: pointer;
-			position: relative;
-			bottom: 5px;
-			z-index: 100;
-
-			.play-slider-all {
-				width: 100%;
-				height: 10px;
-				background-color: #111;
-			}
-
-			.play-slider-progress {
-				width: 45%;
-				height: 10px;
-				@include gradient(#e73e4a, #c63a44);
-				position: relative;
-				bottom: 10px;
-			}
+			-webkit-filter: grayscale(0.4) brightness(0.9) sepia(0.1);
+			filter: grayscale(0.4) brightness(0.9) sepia(0.1);
+		}
+		
+		video.player:hover + .controls .overlay-controls {
+			opacity: 1;
+			transition: opacity 0.3s ease-in-out;
+			-webkit-transition: opacity 0.3s ease-in-out;
 		}
 
-		.row {
-			height: 100px;
-			overflow: hidden;
-			position: relative;
-			bottom: 15px;
-			left: 15px;
-			
+		.controls {
 
-			.btn-prev, .btn-next {
-				width: 100px;
-				height: 100px;
-				margin: 0;
-				display: inline-block;
+			height: 105px;
+
+			.play-slider {
+				width: 640px;
+				cursor: pointer;
 				position: relative;
-				bottom: 19px;
-				border: 1px solid #393a3c;
-				border-top: 2px solid #393a3c;
-				outline: none;
-				border-radius: 0;
-				@include gradient(#2e2f30, #1f2022);
+				bottom: 5px;
+				z-index: 100;
 
-				svg {
+				.play-slider-all {
 					width: 100%;
-					height: 100%;
+					height: 10px;
+					background-color: #111;
+				}
+
+				.play-slider-progress {
+					width: 0;
+					height: 10px;
+					@include gradient(#e73e4a, #c63a44);
+					position: relative;
+					bottom: 10px;
 				}
 			}
 
-			.btn-next {
-				right: 8px;
-			}
-
-			.description {
-				width: 440px;
+			.row {
 				height: 100px;
-				margin: 0;
-				padding-top: 20px;
+				overflow: hidden;
 				position: relative;
-				right: 4px;
-				display: inline-block;
-				border: 1px solid #393a3c;
-				border-top: 2px solid #393a3c;
-				@include gradient(#2e2f30, #1f2022);
+				bottom: 15px;
+				left: 15px;
+				border: 0;
+
+				.btn-prev, .btn-next {
+					width: 100px;
+					height: 100px;
+					margin: 0;
+					display: inline-block;
+					position: relative;
+					bottom: 19px;
+					border: 1px solid #393a3c;
+					border-top: 2px solid #393a3c;
+					outline: none;
+					border-radius: 0;
+					@include gradient(#2e2f30, #1f2022);
+
+					svg {
+						width: 100%;
+						height: 100%;
+
+						path {
+							@include shadow(-2px, 2px, 5px, #1e1e20);
+						}
+					}
+				}
 				
-				span.title, span.band {
-					display: block;
-					text-align: center;
-					@include text-shadow(1px, 1px, 2px, #1e1e20);
+
+				.btn-next {
+					right: 8px;
 				}
 
-				span.title {
-					color: #fff;
-					font-size: 20px;
+				.description {
+					width: 441px;
+					height: 100px;
+					margin: 0;
+					padding-top: 20px;
+					position: relative;
+					right: 4px;
+					display: inline-block;
+					border: 1px solid #393a3c;
+					border-top: 2px solid #393a3c;
+					@include gradient(#2e2f30, #1f2022);
+					
+					span.title, span.band {
+						display: block;
+						text-align: center;
+						@include text-shadow(1px, 1px, 2px, #1e1e20);
+					}
+
+					span.title {
+						color: #fff;
+						font-size: 20px;
+					}
+
+					span.band {
+						margin-top: 5px;
+						color: #474848;
+						font-size: 18px;
+					}
 				}
 
-				span.band {
-					margin-top: 5px;
-					color: #474848;
-					font-size: 18px;
+			}
+			
+			.overlay-controls {
+				opacity: 0;
+				transition: opacity 0.3s ease-in-out;
+				-webkit-transition: opacity 0.3s ease-in-out;
+
+				.btn-play-pause, .control-volume {
+					width: 100px;
+					height: 100px;
+					position: relative;
+					margin: 0;
+					background: none;
+					outline: none;
+					border: 0;
+					@include borderGradient((78, 61, 60, 0), (78, 61, 60, 0.8));
+					
+					svg {
+						width: 100%;
+						height: 100%;
+					}
+				}
+
+				.btn-play-pause {
+					bottom: 225px;
+					left: 1px;
+					border-right-width: 2px;
+				}
+
+				.control-volume {
+					bottom: 325px;
+					left: 540px;
+					border-left-width: 2px;
+					cursor: pointer;
+
+					input[type='range'] {
+						display: none;
+					}
 				}
 			}
 
-		}
-
-		.btn-play-pause {
-			width: 100px;
-			height: 100px;
-			position: relative;
-			bottom: 224 px;
-			left: 1px;
-			margin: 0;
-			background: none;
-			outline: none;
-			border-radius: 0;
-			border-right: 2px solid #393a3c;
-	
-			svg {
-				width: 100%;
-				height: 100%;
+			.overlay-controls:hover {
+				opacity: 1;
+				transition: opacity 0.3s ease-in-out;
+				-webkit-transition: opacity 0.3s ease-in-out;
 			}
 		}
 	}
 }
+
