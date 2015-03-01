@@ -1,5 +1,7 @@
 (function() {
 	var video = $('video.player'),
+	firstSource = $('video .first'),
+	secondSource = $('video .second'),
 	player = $('.video-player'),
 	playpause = $('.btn-play-pause'),
 	playpauseIcon = $('.btn-play-pause .play-pause-icon')
@@ -9,16 +11,69 @@
 		progress: $('.play-slider-progress'),
 		isDragged: false
 	},
-	prev = $(),
-	next = $(),
-	title = $(),
-	band = $(),
-	volume = $();
+	prev = $('.btn-prev'),
+	next = $('.btn-next'),
+	title = $(''),
+	band = $(''),
+	volume = $(''),
+	playlist = [['./videos/ex_01.mp4', './videos/ex_01.webm']],
+	current = 0;
+
+	// expand background to full screen and make positioning of the player
 
 	$('.wrapper').css('height', $(window).height());
 
 	player.css('margin-top', $(window).height() * 0.1);
 
+	// Prev next buttons
+
+	next.click(function() {
+		var length = playlist.length,
+		isPlay;
+		if((current + 1) >= length) {
+			current = 0;
+		} else {
+			current++;
+		}
+
+		if(!video.get(0).paused) {
+			isPlay = true;
+		} else {
+			isPlay = false;
+		}
+
+		firstSource.attr('src', playlist[current][0]);
+		secondSource.attr('src', playlist[current][1]);
+		video.load();
+		if(isPlay) {
+			video.get(0).play();
+		}
+	});
+
+	prev.click(function() {
+		var length = playlist.length,
+		isPlay;
+		if((current - 1) <= 0) {
+			current = length - 1;
+		} else {
+			current--;
+		}
+
+		if(!video.get(0).paused) {
+			isPlay = true;
+		} else {
+			isPlay = false;
+		}
+
+		firstSource.attr('src', playlist[current][0]);
+		secondSource.attr('src', playlist[current][1]);
+		video.load();
+		if(isPlay) {
+			video.get(0).play();
+		}
+	});
+
+	// Toggle playback behaviour
 	var togglePlay = function() {
 		if(!video.get(0).paused) {
 			video.get(0).pause();
@@ -73,6 +128,7 @@
 		loader.progress.animate({ width: width * percent }, 50);
 	});
 
+// Play-pause button behaviour
 	var s = Snap('#play-pause-icon'),
 		playSvg = Snap('#Play'),
 		pauseSvg = Snap('#Pause');

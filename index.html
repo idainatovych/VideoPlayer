@@ -11,8 +11,8 @@
 		<main class="container-fluid col-md-6 col-md-offset-3">
 			<div class="video-player">
 				<video class="player">
-					<source src="./videos/ex_01.mp4"/>
-					<source src="./videos/ex_01.webm"/>
+					<source class="first" src="./videos/ex_01.mp4"/>
+					<source class="second" src="./videos/ex_01.webm"/>
 				</video>
 				<section class="controls">		
 					<div class="play-slider">
@@ -38,16 +38,15 @@
 						<button class="btn-play-pause" name="play-pause">
 							<!--<img class="play-pause-icon" src="icons/play-pause.svg"/>-->
 							<svg id="play-pause-icon">
-								<g id="Pause" opacity="0">
-									<g display="inline">
+								<g id="Pause" transform="translate(-3,0)" opacity="0">
+									<g>
 										<g>
 											<g>
-												
 													<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="40.9779" y1="64.5" x2="40.9779" y2="37.0316" gradientTransform="matrix(-1 0 0 -1 100.4279 100)">
 													<stop  offset="0" style="stop-color:#F3F3F3"/>
 													<stop  offset="1" style="stop-color:#C1C2C3"/>
 												</linearGradient>
-												<path fill="url(#SVGID_1_)" d="M62.3,35.5h-5.7c-1.1,0-2.1,0.9-2.1,2.1V61c0,1.1,0.9,2.1,2.1,2.1h5.7c1.1,0,2.1-0.9,2.1-2.1
+												<path transform="translate(-3,0)" fill="url(#SVGID_1_)" d="M62.3,35.5h-5.7c-1.1,0-2.1,0.9-2.1,2.1V61c0,1.1,0.9,2.1,2.1,2.1h5.7c1.1,0,2.1-0.9,2.1-2.1
 													V37.6C64.4,36.4,63.4,35.5,62.3,35.5z"/>
 											</g>
 											<g>
@@ -56,13 +55,13 @@
 													<stop  offset="0" style="stop-color:#F3F3F3"/>
 													<stop  offset="1" style="stop-color:#C1C2C3"/>
 												</linearGradient>
-												<path fill="url(#SVGID_2_)" d="M44.9,35.3h-5.7c-1.1,0-2.1,0.9-2.1,2.1v23.4c0,1.1,0.9,2.1,2.1,2.1h5.7c1.1,0,2.1-0.9,2.1-2.1
+												<path fill="url(#SVGID_2_)" transform="translate(-3,0)" d="M44.9,35.3h-5.7c-1.1,0-2.1,0.9-2.1,2.1v23.4c0,1.1,0.9,2.1,2.1,2.1h5.7c1.1,0,2.1-0.9,2.1-2.1
 													V37.3C47,36.2,46.1,35.3,44.9,35.3z"/>
 											</g>
 										</g>
 									</g>
 								</g>
-								<g id="Play" display="none" opacity="1">
+								<g id="Play" transform="translate(-3,0)" display="block" opacity="1">
 									<g>
 										<g>
 											<g>
@@ -71,7 +70,7 @@
 													<stop  offset="0" style="stop-color:#F3F3F3"/>
 													<stop  offset="1" style="stop-color:#C1C2C3"/>
 												</linearGradient>
-												<path fill="url(#SVGID_3_)" d="M60.8,46.6L42.2,36c-2-1.1-4.4,0.3-4.4,2.6v21c0,2.3,2.5,3.7,4.4,2.6l18.6-10.5
+												<path transform="translate(-3,0)" fill="url(#SVGID_3_)" d="M60.8,46.6L42.2,36c-2-1.1-4.4,0.3-4.4,2.6v21c0,2.3,2.5,3.7,4.4,2.6l18.6-10.5
 													C62.8,50.6,62.8,47.7,60.8,46.6z"/>
 											</g>
 										</g>
