@@ -1,23 +1,26 @@
-(function() {
-	var video = $('video.player'),
-	firstSource = $('video .first'),
-	secondSource = $('video .second'),
-	player = $('.video-player'),
-	playpause = $('.btn-play-pause'),
-	playpauseIcon = $('.btn-play-pause .play-pause-icon')
-	loader = {
-		el: $('.play-slider'),
-		full: $('.play-slider-all'),
-		progress: $('.play-slider-progress'),
-		isDragged: false
-	},
-	prev = $('.btn-prev'),
-	next = $('.btn-next'),
-	title = $(''),
-	band = $(''),
-	volume = $(''),
-	playlist = [['./videos/ex_01.mp4', './videos/ex_01.webm']],
-	current = 0;
+(function () {
+	var    video = $('video.player'),
+	    firstSource = $('video .first'),
+	    secondSource = $('video .second'),
+	    player = $('.video-player'),
+	    playpause = $('.btn-play-pause'),
+	    playpauseIcon = $('.btn-play-pause .play-pause-icon')
+		loader = {
+			el: $('.play-slider'),
+			full: $('.play-slider-all'),
+			progress: $('.play-slider-progress'),
+			isDragged: false
+		},
+		prev = $('.btn-prev'),
+		next = $('.btn-next'),
+		title = $(''),
+		band = $(''),
+		volume = $(''),
+		playlist = [['./videos/ex_01.mp4', './videos/ex_01.webm']],
+		current = 0,
+		s = Snap('#play-pause-icon'),
+		playSvg = Snap('#Play'),
+		pauseSvg = Snap('#Pause');
 
 	// expand background to full screen and make positioning of the player
 
@@ -27,7 +30,7 @@
 
 	// Prev next buttons
 
-	next.click(function() {
+	next.click(function () {
 		var length = playlist.length,
 		isPlay;
 		if((current + 1) >= length) {
@@ -50,7 +53,7 @@
 		}
 	});
 
-	prev.click(function() {
+	prev.click(function () {
 		var length = playlist.length,
 		isPlay;
 		if((current - 1) <= 0) {
@@ -74,7 +77,7 @@
 	});
 
 	// Toggle playback behaviour
-	var togglePlay = function() {
+	var togglePlay = function () {
 		if(!video.get(0).paused) {
 			video.get(0).pause();
 		} else {
@@ -85,7 +88,7 @@
 	playpause.click(togglePlay);
 
 	// Implementing the behaviour of the progress bar
-	loader.el.on('mousedown', function(e) {
+	loader.el.on('mousedown', function (e) {
 		var offsetLeft = loader.el.offset().left,
 			clickPosLeft = e.pageX,
 			width = loader.full.width();
@@ -95,7 +98,7 @@
 			video.get(0).currentTime = video.get(0).duration * (clickPosLeft - offsetLeft) / width;	
 	});
 
-	loader.el.on('mousemove', function(e) {
+	loader.el.on('mousemove', function (e) {
 		if(loader.isDragged) {
 			var offsetLeft = loader.el.offset().left,
 			clickPosLeft = e.pageX,
@@ -106,11 +109,11 @@
 		}
 	});
 
-	loader.el.on('mouseup', function() {
+	loader.el.on('mouseup', function () {
 		loader.isDragged = false;
 	});
 
-	loader.el.on('mouseleave', function() {
+	loader.el.on('mouseleave', function () {
 		if(loader.isDragged) {
 			video.get(0).play();
 		}
@@ -121,33 +124,25 @@
 		togglePlay();
 	});
 
-	video.on('timeupdate', function() {
-		var width = loader.full.width(),
+    video.on('timeupdate', function () {
+        var width = loader.full.width(),
 			percent = video.get(0).currentTime / video.get(0).duration;
 
-		loader.progress.animate({ width: width * percent }, 50);
-	});
+        loader.progress.animate({ width: width * percent }, 50);
+    });
 
 // Play-pause button behaviour
-	var s = Snap('#play-pause-icon'),
-		playSvg = Snap('#Play'),
-		pauseSvg = Snap('#Pause');
-
-		playSvg.click(function() {
-			playSvg.animate({opacity: 0}, 200, mina.easeinout, function() {
-				playSvg.attr('display', 'none');
-			});
-			pauseSvg.attr('display', 'block')
+    playSvg.click(function () {
+        playSvg.animate({opacity: 0}, 200, mina.easeinout, function () {
+            playSvg.attr('display', 'none');
+        });
+        pauseSvg.attr('display', 'block')
 					.animate({opacity: 1}, 200, mina.easeinout);
-		});
-	
-		pauseSvg.click(function() {
-			pauseSvg.animate({opacity: 0}, 200, mina.easeinout, function() {
-				pauseSvg.attr('display', 'none');
-			});
-			playSvg.attr('display', 'block').
-					animate({opacity: 1}, 200, mina.easeinout);
-		});
-
-
+    });
+    pauseSvg.click(function () {
+        pauseSvg.animate({opacity: 0}, 200, mina.easeinout, function () {
+            pauseSvg.attr('display', 'none');
+        });
+        playSvg.attr('display', 'block').animate({opacity: 1}, 200, mina.easeinout);
+    });
 })();
