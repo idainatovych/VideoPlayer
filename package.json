@@ -4,7 +4,7 @@
   "description": "Implementation of HTML5 video player",
   "main": "index.js",
   "scripts": {
-    "test": "jscs ./js/"
+    "test": "node test"
   },
   "repository": {
     "type": "git",
@@ -25,8 +25,11 @@
   },
   "homepage": "https://github.com/BeatC/VideoPlayer",
   "devDependencies": {
+    "csslint": "^0.10.0",
     "gulp": "^3.8.11",
     "gulp-sass": "^1.3.3",
-    "jscs": "^1.11.3"
+    "html5-lint": "^0.2.4",
+    "jslint": "^0.9.0-pre005",
+    "q": "^1.2.0"
   }
 }
