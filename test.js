@@ -9,10 +9,70 @@ var child = require('child_process'),
 	jsLint = new jsLintStream(options),
 	fs = require('fs'),
 	path = require('path'),
+	logger = require('log4node'),
 	htmlLinterFunc,
 	cssLinterFunc,
 	jsLinterFunc,
-	getDimension;
+	getDimension,
+	StyleCSSError,
+	StyleJSError,
+	StyleHTMLError;
+
+// Defining of the Style error constructors
+
+// CSS code style error
+
+StyleCSSError = function (msg) {
+	// Preventing of throwing w/o 'new' keyword
+	if(!(this instanceof StyleCSSError)) {
+		return new StyleCSSError(msg);
+	}
+
+	this.name = 'CSS Style Error';
+	this.message = msg || 'Some CSS style error';
+
+	// Implicit returning of new created object
+	return this;
+};
+
+StyleCSSError.prototype = Error;
+StyleCSSError.prototype.constructor = StyleCSSError;
+
+// HTML code style error
+
+StyleHTMLError = function (msg) {
+	// Preventing of throwing w/o 'new' keyword
+	if(!(this instanceof StyleHTMLError)) {
+		return new StyleHTMLError(msg);
+	}
+
+	this.name = 'HTML Style Error';
+	this.message = msg || 'Some HTML style error';
+
+	// Implicit returning of new created object
+	return this;
+};
+
+StyleHTMLError.prototype = Error;
+StyleHTMLError.prototype.constructor = StyleHTMLError;
+
+// JS code style error
+
+StyleJSError = function (msg) {
+	// Preventing of throwing w/0 'new' keyword
+	if(!(this instanceof StyleJSError)) {
+		return new StyleJSError(msg);
+	}
+
+	this.name = 'JS Style Error';
+	this.message = msg || 'Some JS style error';
+
+	// Implicit returning of new created object
+	return this;
+}
+
+StyleJSError.prototype = Error;
+StyleJSError.prototype.constructor = StyleJSError;
 
 /* Get files with defined dimension
 *	@param {string} dimension - dimension of file you want to find
@@ -143,8 +203,16 @@ jsLint.on('data', function (chunk) {
 	console.log('/--------------------------------------------------/\n')
 });
 
-jsLinterFunc('./js', function () {
-	cssLinterFunc('./styles/*', function () {
-		htmlLinterFunc('./');
-	});
-});
+//jsLinterFunc('./js', function () {
+//	cssLinterFunc('./styles/*', function () {
+//		htmlLinterFunc('./');
+//	});
+//});
+
+
+logger.error("Some error messages");
+try {
+	throw new StyleJSError();
+} catch(e) {
+	console.dir(e, {colors: true})
+}
