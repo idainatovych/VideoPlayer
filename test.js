@@ -144,7 +144,7 @@ jsLint.on('data', function (chunk) {
 });
 
 jsLinterFunc('./js', function () {
-	cssLinterFunc('./styles/test.css', function () {
+	cssLinterFunc('./styles/*', function () {
 		htmlLinterFunc('./');
 	});
 });
