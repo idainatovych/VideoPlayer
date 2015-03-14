@@ -24,11 +24,11 @@
     "url": "https://github.com/BeatC/VideoPlayer/issues"
   },
   "homepage": "https://github.com/BeatC/VideoPlayer",
-  "devDependencies": {
+  "dependencies": {
     "csslint": "^0.10.0",
     "gulp": "^3.8.11",
     "gulp-sass": "^1.3.3",
-    "html5-lint": "^0.2.4",
+    "html5-lint": "^0.2.5",
     "jslint": "^0.9.0-pre005",
     "q": "^1.2.0"
   }

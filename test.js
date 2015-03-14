@@ -1,5 +1,6 @@
 var child = require('child_process'),
 	html5Lint = require('html5-lint'),
+	Q = require('q'),
 	jsLintStream = require('jslint').LintStream,
 	options = {
 		"edition": 'latest',
