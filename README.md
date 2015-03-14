@@ -1,5 +1,7 @@
 # HTML5 video player
 
+[![Build Status](https://travis-ci.org/BeatC/VideoPlayer.svg?branch=master)](https://travis-ci.org/BeatC/VideoPlayer)
+
 This repository is just my implementation of customized video player based on HTML5 Video
 I'm looking for your pull requests and forks.
 
