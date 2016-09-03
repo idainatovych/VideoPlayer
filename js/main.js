@@ -1,55 +1,58 @@
+'use strict';
+
 (function () {
-	var    video = $('video.player'),
-	    firstSource = $('video .first'),
-	    secondSource = $('video .second'),
-	    player = $('.video-player'),
-	    playpause = $('.btn-play-pause'),
-	    playpauseIcon = $('.btn-play-pause .play-pause-icon')
-		loader = {
-			el: $('.play-slider'),
-			full: $('.play-slider-all'),
-			progress: $('.play-slider-progress'),
-			isDragged: false
-		},
-		prev = $('.btn-prev'),
-		next = $('.btn-next'),
-		title = $(''),
-		band = $(''),
-		volume = $(''),
-		playlist = [['./videos/ex_01.mp4', './videos/ex_01.webm']],
-		current = 0,
-		s = Snap('#play-pause-icon'),
-		playSvg = Snap('#Play'),
-		pauseSvg = Snap('#Pause');
+  let $video = $('video.player');
+  let firstSource = $('video .first');
+  let secondSource = $('video .second');
+  let player = $('.video-player');
+  let playpause = $('.btn-play-pause');
+  let playpauseIcon = $('.btn-play-pause .play-pause-icon');
 
-	// expand background to full screen and make positioning of the player
+  let loader = {
+    el: $('.play-slider'),
+    full: $('.play-slider-all'),
+    progress: $('.play-slider-progress'),
+    isDragged: false,
+  };
+  let prev = $('.btn-prev');
+  let next = $('.btn-next');
+  let title = $('');
+  let band = $('');
+  let volume = $('');
+  let playlist = [['./videos/ex_01.mp4', './videos/ex_01.webm']];
+  let current = 0;
+  let s = Snap('#play-pause-icon');
+  let playSvg = Snap('#Play');
+  let pauseSvg = Snap('#Pause');
 
-	$('.wrapper').css('height', $(window).height());
+  // expand background to full screen and make positioning of the player
 
-	player.css('margin-top', $(window).height() * 0.1);
+  $('.wrapper').css('height', $(window).height());
 
-	// Prev next buttons
+  player.css('margin-top', $(window).height() * 0.1);
 
-	next.click(function () {
-		var length = playlist.length,
-		isPlay;
-		if((current + 1) >= length) {
-			current = 0;
-		} else {
-			current++;
-		}
+  // Prev next buttons
 
-		if(!video.get(0).paused) {
-			isPlay = true;
-		} else {
-			isPlay = false;
-		}
+  next.click(function () {
+    let length = playlist.length;
+    let isPlay;
+    if ((current + 1) >= length) {
+      current = 0;
+    } else {
+      current++;
+    }
+
+    if (!$video.get(0).paused) {
+      isPlay = true;
+    } else {
+      isPlay = false;
+    }
 
 		firstSource.attr('src', playlist[current][0]);
 		secondSource.attr('src', playlist[current][1]);
-		video.load();
+		$video.load();
 		if(isPlay) {
-			video.get(0).play();
+			$video.get(0).play();
 		}
 	});
 
@@ -62,26 +65,26 @@
 			current--;
 		}
 
-		if(!video.get(0).paused) {
-			isPlay = true;
-		} else {
-			isPlay = false;
-		}
+    if (!$video.get(0).paused) {
+      isPlay = true;
+    } else {
+      isPlay = false;
+    }
 
-		firstSource.attr('src', playlist[current][0]);
-		secondSource.attr('src', playlist[current][1]);
-		video.load();
-		if(isPlay) {
-			video.get(0).play();
-		}
-	});
+    firstSource.attr('src', playlist[current][0]);
+    secondSource.attr('src', playlist[current][1]);
+    $video.load();
+    if (isPlay) {
+      $video.get(0).play();
+    }
+  });
 
 	// Toggle playback behaviour
 	var togglePlay = function () {
-		if(!video.get(0).paused) {
-			video.get(0).pause();
+		if(!$video.get(0).paused) {
+			$video.get(0).pause();
 		} else {
-			video.get(0).play();
+			$video.get(0).play();
 		}
 	};
 
@@ -95,7 +98,7 @@
 
 			loader.isDragged = true;
 			loader.progress.animate({width: clickPosLeft - offsetLeft}, 100);
-			video.get(0).currentTime = video.get(0).duration * (clickPosLeft - offsetLeft) / width;	
+			$video.get(0).currentTime = $video.get(0).duration * (clickPosLeft - offsetLeft) / width;
 	});
 
 	loader.el.on('mousemove', function (e) {
@@ -105,7 +108,7 @@
 			width = loader.full.width();
 
 			loader.progress.css('width',clickPosLeft - offsetLeft);
-			video.get(0).currentTime = video.get(0).duration * (clickPosLeft - offsetLeft) / width;	
+			$video.get(0).currentTime = $video.get(0).duration * (clickPosLeft - offsetLeft) / width;
 		}
 	});
 
@@ -115,18 +118,18 @@
 
 	loader.el.on('mouseleave', function () {
 		if(loader.isDragged) {
-			video.get(0).play();
+			$video.get(0).play();
 		}
 		loader.isDragged = false;
 	});
 
-	video.click(function() {
+	$video.click(function() {
 		togglePlay();
 	});
 
-    video.on('timeupdate', function () {
+    $video.on('timeupdate', function () {
         var width = loader.full.width(),
-			percent = video.get(0).currentTime / video.get(0).duration;
+			percent = $video.get(0).currentTime / $video.get(0).duration;
 
         loader.progress.animate({ width: width * percent }, 50);
     });

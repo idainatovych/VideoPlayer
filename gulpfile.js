@@ -1,14 +1,16 @@
-var gulp = require('gulp'),
-	sass = require('gulp-sass');
+'use strict';
 
-gulp.task('sass', function() {
-	gulp.src('./sass/*.scss')
-		.pipe(sass())
-		.pipe(gulp.dest('./styles'));;
+let gulp = require('gulp');
+let sass = require('gulp-sass');
+
+gulp.task('sass', () => {
+  gulp.src('./sass/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('./styles'));;
 });
 
-gulp.task('watch', function() {
-	gulp.watch('./sass/*.scss', ['default']);
+gulp.task('watch', () => {
+  gulp.watch('./sass/*.scss', ['default']);
 });
 
 gulp.task('default', ['sass']);
